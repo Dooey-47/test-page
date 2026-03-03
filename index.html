@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Page</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+/* Header */
+.cover {
+    width: 100%;
+    height: 300px;
+    background: url("https://picsum.photos/1200/300") center/cover no-repeat;
+    position: relative;
+}
+
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 5px solid white;
+    position: absolute;
+    bottom: -80px;
+    left: 50px;
+    background: url("https://picsum.photos/200") center/cover no-repeat;
+}
+
+.profile-info {
+    margin-top: 100px;
+    padding-left: 230px;
+}
+
+.profile-info h1 {
+    margin: 0;
+}
+
+.profile-info p {
+    color: gray;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 20px;
+    padding: 15px 50px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: white;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #1877f2;
+    font-weight: bold;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    padding: 20px 50px;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 30%;
+}
+
+.content {
+    width: 70%;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.post-input textarea {
+    width: 100%;
+    padding: 10px;
+    resize: none;
+}
+
+.post-input button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #1877f2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.post {
+    margin-top: 10px;
+}
+
+.post small {
+    color: gray;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Cover & Profile -->
+<div class="cover">
+    <div class="profile-pic"></div>
+</div>
+
+<div class="profile-info">
+    <h1>John Doe</h1>
+    <p>Web Developer | Coffee Lover ☕</p>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+    <a href="#">Timeline</a>
+    <a href="#">About</a>
+    <a href="#">Friends</a>
+    <a href="#">Photos</a>
+</div>
+
+<!-- Main Layout -->
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="card">
+            <h3>About</h3>
+            <p>📍 New York</p>
+            <p>💼 Works at Tech Company</p>
+            <p>🎓 Studied Computer Science</p>
+        </div>
+
+        <div class="card">
+            <h3>Photos</h3>
+            <img src="https://picsum.photos/100?1">
+            <img src="https://picsum.photos/100?2">
+            <img src="https://picsum.photos/100?3">
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="card post-input">
+            <h3>Create Post</h3>
+            <textarea id="postText" rows="3" placeholder="What's on your mind?"></textarea>
+            <button onclick="addPost()">Post</button>
+        </div>
+
+        <div id="posts"></div>
+    </div>
+
+</div>
+
+<script>
+function addPost() {
+    const text = document.getElementById("postText").value;
+    if (text.trim() === "") return;
+
+    const postDiv = document.createElement("div");
+    postDiv.className = "card post";
+    postDiv.innerHTML = `
+        <h4>John Doe</h4>
+        <small>${new Date().toLocaleString()}</small>
+        <p>${text}</p>
+    `;
+
+    document.getElementById("posts").prepend(postDiv);
+    document.getElementById("postText").value = "";
+}
+</script>
+
+</body>
+</html>
